@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ accion }} datos</h4>
+    <button type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="activeModal.dismiss()"
+    ></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="habilidadForm" (ngSubmit)="saveHabilidad()"> 
+        <div class="mb-2">
+            <label for="nombre">Nombre</label>
+                <input formControlName="nombre"
+                    placeholder="Ingrese habilidad"
+                    type="text"
+                    class="form-control"
+                    name="nombre"
+                    [ngClass]="{
+                            'is-invalid': habilidadForm.get('nombre')?.errors && habilidadForm.get('nombre')?.touched,
+                            'is-valid': !habilidadForm.get('nombre')?.errors && habilidadForm.get('nombre')?.touched
+                    }">
+                <span class="text-danger"
+                    *ngIf="habilidadForm.get('nombre')?.hasError('required') && habilidadForm.get('nombre')?.touched"
+                >Nombre es requerido</span>
+        </div>
+        
+        <div class="mb-2">
+            <label for="descripcion">Descripción</label>
+            <input type="text"
+                   placeholder="Ingrese descripción de su habilidad."
+                   class="form-control"
+                   name="descripcion"
+                   formControlName="descripcion"
+                   [ngClass]="{ 
+                        'is-invalid' : habilidadForm.get('descripcion')?.errors && habilidadForm.get('descripcion')?.touched,
+                        'is-valid': !habilidadForm.get('descripcion')?.errors && habilidadForm.get('descripcion')?.touched
+                    }">  
+            <span class="text-danger"
+                *ngIf="habilidadForm.get('descripcion')?.hasError('required') && habilidadForm.get('descripcion')?.touched"
+            >Descripción es requerido</span>
+        </div>
+
+        <div class="mb-2">
+            <label for="puntaje">Puntaje</label>
+            <input class="form-control"
+                min="1" max="10"
+                name="puntaje"
+                type="number"
+                formControlName="puntaje"
+                [ngClass]="{
+                    'is-invalid': habilidadForm.get('puntaje')?.errors && habilidadForm.get('puntaje')?.touched,
+                    'is-valid': !habilidadForm.get('puntaje')?.errors && habilidadForm.get('puntaje')?.touched
+                }">
+            <span class="text-danger"
+                *ngIf="habilidadForm.get('puntaje')?.hasError('required') && habilidadForm.get('puntaje')?.touched"
+            >Puntaje es requerido</span>
+        </div>
+
+        <div class="mb-2">
+            <label for="tipoHabilidad">Tipo de Habilidad</label>
+            <select formControlName="tipoHabilidad"
+                type="text" class="form-select" name="tipoHabilidad"
+                [ngClass]="{
+                    'is-invalid': habilidadForm.get('tipoHabilidad')?.errors && habilidadForm.get('tipoHabilidad')?.touched,
+                    'is-valid': !habilidadForm.get('tipoHabilidad')?.errors && habilidadForm.get('tipoHabilidad')?.touched
+            }">
+                <option selected>Elija tipo de habilidad...</option>
+                <option>Hard Skill</option>
+                <option>Soft Skill</option>
+                </select>
+            <span class="text-danger"
+                *ngIf="habilidadForm.get('tipoHabilidad')?.hasError('required') && habilidadForm.get('tipoHabilidad')?.touched"
+            >Tipo de habilidad es requerido</span>
+        </div>
+
+        <span *ngIf="!habilidadForm.valid" class="text-warning">Complete correctamente para enviar</span>
+        <button class="btn btn-outline-success d-flex ms-auto me-auto bi bi-plus-square"
+            type="submit"
+            [disabled]="!habilidadForm.valid"
+        >Añadir</button>
+    </form>
+</div>
+

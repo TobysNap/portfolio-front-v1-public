@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+
+body {
+    font-family: 'Arvo', serif;
+}
+
+.btn {
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.title {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+}
+
+.card {
+	width: 30%;
+	height: 25rem;
+	perspective: 80rem;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.card__inner {
+	position: relative;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform 0.5s;
+}
+
+.card:hover .card__inner {
+	transform: rotateY(180deg);
+}
+
+.card__body {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	backface-visibility: hidden;
+	border-radius: 8px;
+	box-shadow: 0 5px 10px 
+		rgba(0, 0, 0, 0.15);
+}
+
+.card__title {
+	text-align: center;
+}
+
+@media screen and (max-width: 750px) {
+	.card {
+		width: 80%;
+		height: 25rem;
+		perspective: 80rem;
+		word-wrap: break-word;
+		hyphens: auto;
+		justify-self: center;
+	}
+
+	.card__body--back {
+		overflow: scroll;
+		text-overflow: ellipsis;
+	}
+}

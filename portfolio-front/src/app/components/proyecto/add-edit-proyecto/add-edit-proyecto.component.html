@@ -1,0 +1,79 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ accion }} datos</h4>
+    <button type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="activeModal.dismiss()"
+    ></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="proyectoForm" (ngSubmit)="saveProyecto()"> 
+        <div class="mb-2">
+            <label for="nombre">Nombre</label>
+                <input formControlName="nombre"
+                    placeholder="Ingrese nombre del proyecto"
+                    type="text"
+                    class="form-control"
+                    name="nombre"
+                    [ngClass]="{
+                            'is-invalid': proyectoForm.get('nombre')?.errors && proyectoForm.get('nombre')?.touched,
+                            'is-valid': !proyectoForm.get('nombre')?.errors && proyectoForm.get('nombre')?.touched
+                    }">
+                <span class="text-danger"
+                    *ngIf="proyectoForm.get('nombre')?.hasError('required') && proyectoForm.get('nombre')?.touched"
+                >Nombre es requerido</span>
+        </div>
+        
+        <div class="mb-2">
+            <label for="descripcion">Descripción</label>
+            <input type="text"
+                   placeholder="Ingrese descripción del proyecto."
+                   class="form-control"
+                   name="descripcion"
+                   formControlName="descripcion"
+                   [ngClass]="{ 
+                        'is-invalid' : proyectoForm.get('descripcion')?.errors && proyectoForm.get('descripcion')?.touched,
+                        'is-valid': !proyectoForm.get('descripcion')?.errors && proyectoForm.get('descripcion')?.touched
+                    }">  
+            <span class="text-danger"
+                *ngIf="proyectoForm.get('descripcion')?.hasError('required') && proyectoForm.get('descripcion')?.touched"
+            >Descripción es requerido</span>
+        </div>
+
+        <div class="mb-2">
+            <label for="url">Enlace</label>
+            <input formControlName="url"
+                   placeholder="Ingrese enlace al proyecto."
+                   type="text" class="form-control" name="url"
+                   [ngClass]="{
+                        'is-invalid': proyectoForm.get('url')?.errors && proyectoForm.get('url')?.touched,
+                        'is-valid': !proyectoForm.get('url')?.errors && proyectoForm.get('url')?.touched
+                    }">
+            <span class="text-danger"
+                *ngIf="proyectoForm.get('url')?.hasError('required') && proyectoForm.get('url')?.touched"
+            >Enlace es requerido</span>
+        </div>     
+
+        <div class="mb-2">
+            <label for="imgUrl">Enlace imagen (opcional)</label>
+            <input type="text"
+                   placeholder="Ingrese enlace a imagen representativa del proyecto"
+                   class="form-control"
+                   name="imgUrl"
+                   formControlName="imgUrl"
+                   [ngClass]="{ 
+                        'is-invalid' : proyectoForm.get('imgUrl')?.errors && proyectoForm.get('imgUrl')?.touched,
+                        'is-valid': !proyectoForm.get('imgUrl')?.errors && proyectoForm.get('imgUrl')?.touched
+                    }">  
+            <span class="text-danger"
+                *ngIf="proyectoForm.get('imgUrl')?.hasError('required') && proyectoForm.get('imgUrl')?.touched"
+            >Enlace imagen es requerido</span>
+        </div>
+
+        <span *ngIf="!proyectoForm.valid" class="text-warning">Complete correctamente para enviar</span>
+        <button class="btn btn-outline-success d-flex ms-auto me-auto bi bi-plus-square"
+            type="submit"
+            [disabled]="!proyectoForm.valid"
+        >Añadir</button>
+    </form>
+</div>

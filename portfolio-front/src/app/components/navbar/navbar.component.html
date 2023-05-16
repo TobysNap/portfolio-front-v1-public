@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
+    <div class="row w-100">
+        <div class="col-8">
+            <a href="/home" class="navbar-brand">
+                <img class="img-fluid" src="../../../assets/ApLogos.png" alt="Argentina Programa"width="360" height="70">
+            </a>
+        </div>
+        <div class="col-2 m-2">
+            <button class="btn btn-outline-info login-btn"
+                [routerLink]="['/login']"
+                *ngIf="loginService.logged === false"
+            >
+                <i class="bi bi-box-arrow-in-right"></i>
+                Iniciar Sesión
+            </button>
+            <button class="btn btn-outline-danger login-btn"
+                [routerLink]="['/']"
+                *ngIf="loginService.logged === true"
+                (click)="open(content)"
+            >
+                <i class="bi bi-box-arrow-left"></i>
+                Cerrar Sesión
+            </button>
+        </div>
+        <div class="col-1 w-auto col__1">
+            <a href="mailto:{{usuario.email}}" class="nav-link"><i class="bi bi-envelope-at btn btn-sm"></i></a>
+            <a href="http://{{usuario.github}}" class="nav-link"><i class="bi bi-github btn btn-sm"></i></a>
+            <a href="http://{{usuario.facebook}}" class="nav-link"><i class="bi bi-facebook btn btn-sm"></i></a>
+        </div>
+        <div class="col-1 w-auto col__2">
+            <a href="http://{{usuario.instagram}}" class="nav-link"><i class="bi bi-instagram btn btn-sm"></i></a>
+            <a href="http://{{usuario.linkedin}}" class="nav-link"><i class="bi bi-linkedin btn btn-sm"></i></a>
+            <a href="http://{{usuario.twitter}}" ><i class="bi bi-twitter btn btn-sm"></i></a>
+        </div>
+        <div class="row navbar-brand">
+            <span class="d-flex fw-bold">ARGENTINA PROGRAMA - #YoProgramo</span>
+        </div>
+    </div> 
+</nav>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="logout-modal">Cerrar sesión</h4>
+        <button type="button" class="btn-close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <p>¿Desea cerrar sesión?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
+        <button class="btn btn-danger" (click)="modal.close()">Cerrar sesión</button>
+    </div>
+</ng-template>

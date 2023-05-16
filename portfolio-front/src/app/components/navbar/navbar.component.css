@@ -1,0 +1,23 @@
+.btn-sm {
+    color: var(--bs-info)
+}
+
+.btn-sm:hover {
+    background-color: var(--bs-info);
+    color: #000000;
+}
+
+.login-btn {
+    position: relative;
+    right: 3em;
+    top: 1em;
+}
+
+.col__1 {
+    position: absolute;
+    right: 2rem;
+}
+.col__2 {
+    position: absolute;
+    right: 0;
+}

@@ -1,0 +1,41 @@
+<div class="container mb-6" >
+    <div class="title">
+        <h2 class="border-bottom border-primary">PROYECTOS</h2>
+        <button
+            class="btn btn-outline-success bi bi-plus-square"
+            (click)="open()"
+            *ngIf="loginService.logged === true"
+        >Añadir</button>
+    </div>
+
+    <div class="row">
+        <div class="card text-white my-3 p-0 mx-3" *ngFor="let proyecto of proyectos">
+            <div class="card__inner">
+                <div class="card__body card__body--front" style="background: url({{proyecto.imgUrl}}) center no-repeat;">
+                    <h2 class="card__title">{{proyecto.nombre}}</h2>
+                </div>
+                <div class="card__body card__body--back">
+                    <h2 class="card__title">{{proyecto.nombre}}</h2>
+                    <ul>
+                        <li>{{proyecto.descripcion}}</li>
+                        <li>Podés encontrar el proyecto haciendo <a href="{{proyecto.url}}" target="_blank">click aquí </a></li>
+                    </ul>
+                    <div class="btn-group">
+                        <button
+                            class="btn btn-outline-warning bi bi-pencil-square"
+                            (click)="open(proyecto.id)"
+                            *ngIf="loginService.logged === true"
+                        >Editar</button>
+                        <button
+                            class="btn btn-outline-danger bi bi-trash"
+                            (click)="delete(proyecto.id!)"
+                            *ngIf="loginService.logged === true"
+                        >Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h5 *ngIf="proyectos.length == 0">No hay registros para mostrar</h5>
+</div>
