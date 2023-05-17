@@ -1,0 +1,41 @@
+<div class="container mb-6" >
+    <div class="title">
+        <h2 class="border-bottom border-primary">HABILIDADES</h2>
+        <button class="btn btn-outline-success bi bi-plus-square"
+            (click)="open()"
+            *ngIf="loginService.logged === true"
+        >Añadir</button>
+    </div>
+
+    <div class="row">
+        <div class="card text-white my-3 p-0 mx-3" *ngFor="let habilidad of habilidades">
+            <div class="card__inner">
+                <div class="card__body card__body--front">
+                    <h2 class="card__title">{{habilidad.nombre}}</h2>
+                </div>
+                <div class="card__body card__body--back">
+                    <h2 class="card__title">{{habilidad.nombre}}</h2>
+                    <h4 class="card__title">{{habilidad.tipoHabilidad}}</h4>
+                    <ul>
+                        <p>
+                            <ngb-progressbar type="success" [value]="habilidad.puntaje" [max]="10" class="me-2"></ngb-progressbar>
+                        </p>
+                        <li>Puntaje(1-10): {{habilidad.puntaje}}</li>
+                        <li>{{habilidad.descripcion}}</li>
+                    </ul>                   
+                    <div class="btn-group">
+                        <button class="btn btn-outline-warning bi bi-pencil-square"
+                            (click)="open(habilidad.id)"
+                            *ngIf="loginService.logged === true"
+                        >Editar</button>
+                        <button class="btn btn-outline-danger bi bi-trash"
+                            (click)="delete(habilidad.id!)"
+                            *ngIf="loginService.logged === true"
+                        >Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h5 *ngIf="habilidades.length == 0">No hay registros para mostrar</h5>
+</div>

@@ -1,0 +1,82 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ accion }} datos</h4>
+    <button type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="activeModal.dismiss()"
+    ></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="educacionForm" (ngSubmit)="saveEducacion()">
+            <div class="row mb-2">
+                <div class="col">
+                    <label for="carrera">Carrera</label>
+            <input type="text"
+                   placeholder="Ingrese carrera cursada"
+                   class="form-control"
+                   name="carrera"
+                   formControlName="carrera"
+                   [ngClass]="{ 
+                        'is-invalid' : educacionForm.get('carrera')?.errors && educacionForm.get('carrera')?.touched,
+                        'is-valid': !educacionForm.get('carrera')?.errors && educacionForm.get('carrera')?.touched
+                    }">  
+            <span class="text-danger"
+                *ngIf="educacionForm.get('carrera')?.hasError('required') && educacionForm.get('carrera')?.touched"
+            >Carrera es requerido</span>
+                </div>
+
+                <div class="col">
+                    <label for="titulo">Titulo</label>
+                    <input formControlName="titulo"
+                        placeholder="Ingrese título de formación"
+                        type="text" class="form-control" name="titulo"
+                        [ngClass]="{
+                                'is-invalid': educacionForm.get('titulo')?.errors && educacionForm.get('titulo')?.touched,
+                                'is-valid': !educacionForm.get('titulo')?.errors && educacionForm.get('titulo')?.touched
+                            }">
+                    <span class="text-danger"
+                        *ngIf="educacionForm.get('titulo')?.hasError('required') && educacionForm.get('titulo')?.touched"
+                    >Titulo es requerido</span>
+                </div>
+            </div>
+
+        <div class="mb-2">
+            <label for="establecimiento">Establecimiento</label>
+                <input formControlName="establecimiento"
+                    placeholder="Ingrese establecimiento educativo"
+                    type="text"
+                    class="form-control"
+                    name="establecimiento"
+                    [ngClass]="{
+                            'is-invalid': educacionForm.get('establecimiento')?.errors && educacionForm.get('establecimiento')?.touched,
+                            'is-valid': !educacionForm.get('establecimiento')?.errors && educacionForm.get('establecimiento')?.touched
+                    }">
+                <span class="text-danger"
+                    *ngIf="educacionForm.get('establecimiento')?.hasError('required') && educacionForm.get('establecimiento')?.touched"
+                >Establecimiento es requerido</span>
+        </div>
+
+        <div class="mb-2">
+            <label for="periodo">Periodo</label>
+            <input type="text"
+                   placeholder="Ingrese periodo trabajado del siguiente modo: 2010-2012 o 2012 o 2010-actualidad"
+                   class="form-control"
+                   name="periodo"
+                   formControlName="periodo"
+                   [ngClass]="{ 
+                        'is-invalid' : educacionForm.get('periodo')?.errors && educacionForm.get('periodo')?.touched,
+                        'is-valid': !educacionForm.get('periodo')?.errors && educacionForm.get('periodo')?.touched
+                    }">  
+            <span class="text-danger"
+                *ngIf="educacionForm.get('periodo')?.hasError('required') && educacionForm.get('periodo')?.touched"
+            >Periodo es requerido</span>
+        </div>
+            
+         <span *ngIf="!educacionForm.valid" class="text-warning">Complete correctamente para enviar</span>
+        <button class="btn btn-outline-success d-flex ms-auto me-auto bi bi-plus-square"
+            type="submit"
+            [disabled]="!educacionForm.valid"
+        >Añadir</button>
+    </form>
+    
+</div>

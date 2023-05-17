@@ -1,0 +1,43 @@
+<div class="container mb-6" >
+    <div class="title">
+        <h2 class="border-bottom border-primary">EXPERIENCIA LABORAL</h2>
+        <button
+            class="btn btn-outline-success bi bi-plus-square"
+            (click)="open()"
+            *ngIf="loginService.logged === true"
+        >Añadir</button>
+    </div>
+
+    <div class="row">
+        <div class="card text-white my-3 p-0 mx-3" *ngFor="let experiencia of experiencias">
+            <div class="card__inner">
+                <div class="card__body card__body--front">
+                    <h2 class="card__title">{{experiencia.establecimiento}}</h2>
+                </div>
+                <div class="card__body card__body--back">
+                    <h2 class="card__title">{{experiencia.establecimiento}}</h2>
+                    <ul>
+                        <li>Trabajé en {{experiencia.establecimiento}}</li>
+                        <li>Me desempeñé en {{experiencia.puesto}}</li>
+                        <li>Era un empleo de {{experiencia.tipoEmpleo}}</li>
+                        <li>Trabajé durante el siguiente periodo {{experiencia.periodo}}</li>
+                        <li>Para más información comunicate a... {{experiencia.contactoExperiencia}}</li>
+                    </ul>                   
+                    <div class="btn-group">
+                        <button
+                            class="btn btn-outline-warning bi bi-pencil-square"
+                            (click)="open(experiencia.id)"
+                            *ngIf="loginService.logged === true"
+                        >Editar</button>
+                        <button
+                            class="btn btn-outline-danger bi bi-trash"
+                            (click)="delete(experiencia.id!)"
+                            *ngIf="loginService.logged === true"
+                        >Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h5 *ngIf="experiencias.length == 0">No hay registros para mostrar</h5>
+</div>

@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="container banner">
+        <img src="{{usuario.picUrl}}" alt="Banner" class="img-fluid col-9 w-100">
+    
+        <div class="container pic">
+            <img src="{{usuario.profilePicUrl}}" alt="Foto de perfil" class="profilePic">
+        </div>
+    </div>
+    <div class="title">
+        <button class="btn btn-sm btn-outline-warning bi bi-pencil-square"
+            (click)="open()"
+            *ngIf="loginService.logged === true"
+        >Editar</button>
+        <div class="row">
+            <h1 class="title__h1">Hola! Soy {{usuario.nombre}} {{usuario.apellido}}</h1>
+        </div>
+    </div>
+    <h3 class="border-bottom border-secondary text-center">Te cuento un poco sobre mí</h3>
+    <h4>Tengo {{usuario.edad}} años y soy de {{usuario.localidad}}, {{usuario.provincia}}</h4>
+    <p>{{usuario.descripcion}}</p>
+    <p class="text-info">
+        Podés contactarme al mail {{usuario.email}} o al telefono {{usuario.telefono}}.
+        También en las redes en la parte superior derecha de este sitio.
+    </p>
+</div>

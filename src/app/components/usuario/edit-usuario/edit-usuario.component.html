@@ -1,0 +1,240 @@
+<div class="modal-header">
+<button class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss()"
+></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="usuarioForm" (ngSubmit)="save()"> 
+        <div class="row mb-2">
+            <div class="col">
+                    <label for="apellido">Apellido</label>
+                    <input formControlName="apellido"
+                           placeholder="Ingresar nuevo apellido"
+                           type="text" class="form-control" name="apellido"
+                           [ngClass]="{
+                                'is-invalid': usuarioForm.get('apellido')?.errors && usuarioForm.get('apellido')?.touched,
+                                'is-valid': !usuarioForm.get('apellido')?.errors && usuarioForm.get('apellido')?.touched
+                            }">
+                    <span class="text-danger"
+                        *ngIf="usuarioForm.get('apellido')?.hasError('required') && usuarioForm.get('apellido')?.touched"
+                    >Apellido es requerido</span>
+            </div>
+    
+            <div class="col">
+                    <label for="nombre">Nombre</label>
+                    <input type="text"
+                           placeholder="Ingresar nuevo nombre"
+                           class="form-control"
+                           name="nombre"
+                           formControlName="nombre"
+                           [ngClass]="{ 
+                                'is-invalid': usuarioForm.get('nombre')?.errors && usuarioForm.get('nombre')?.touched,
+                                'is-valid': !usuarioForm.get('nombre')?.errors && usuarioForm.get('nombre')?.touched
+                            }">  
+                    <span class="text-danger"
+                        *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched"
+                    >Nombre es requerido</span>
+            </div>
+
+            <div class="col-2">
+                <label for="edad">Edad</label>
+            <input class="form-control"
+                name="edad"
+                type="number"
+                formControlName="edad"
+                [ngClass]="{
+                    'is-invalid': usuarioForm.get('edad')?.errors && usuarioForm.get('edad')?.touched,
+                    'is-valid': !usuarioForm.get('edad')?.errors && usuarioForm.get('edad')?.touched
+                }">
+            <span class="text-danger"
+                *ngIf="usuarioForm.get('edad')?.hasError('required') && usuarioForm.get('edad')?.touched"
+            >Edad es requerido</span>
+            </div>
+        </div>
+        
+        <div class="mb-2">
+            <label for="descripcion">Descripción</label>
+            <textarea formControlName="descripcion"
+                placeholder="Ingrese nueva descripcion"
+                type="text"
+                class="form-control"
+                name="descripcion"
+                [ngClass]="{
+                    'is-invalid': usuarioForm.get('descripcion')?.errors && usuarioForm.get('descripcion')?.touched,
+                    'is-valid': !usuarioForm.get('descripcion')?.errors && usuarioForm.get('descripcion')?.touched
+                }"></textarea>
+            <span class="text-danger"
+                *ngIf="usuarioForm.get('descripcion')?.hasError('required') && usuarioForm.get('descripcion')?.touched"
+            >Descripción es requerido</span>
+        </div>
+
+        <div class="mb-2">
+            <label for="picUrl">Url imagen</label>
+                <input formControlName="picUrl"
+                    placeholder="Ingrese nueva url para imagen de banner"
+                    type="text"
+                    class="form-control"
+                    name="picUrl"
+                    [ngClass]="{
+                            'is-invalid': usuarioForm.get('picUrl')?.errors && usuarioForm.get('picUrl')?.touched,
+                            'is-valid': !usuarioForm.get('picUrl')?.errors && usuarioForm.get('picUrl')?.touched
+                    }">
+                <span class="text-danger"
+                    *ngIf="usuarioForm.get('picUrl')?.hasError('required') && usuarioForm.get('picUrl')?.touched"
+                >Url imagen es requerido</span>
+        </div>
+
+        <div class="mb-2">
+            <label for="profilePicUrl">Url imagen de perfil</label>
+                <input formControlName="profilePicUrl"profilePicUrl
+                    placeholder="Ingrese nueva url para imagen de perfil"
+                    type="text"
+                    class="form-control"
+                    name="profilePicUrl"
+                    [ngClass]="{
+                            'is-invalid': usuarioForm.get('profilePicUrl')?.errors && usuarioForm.get('profilePicUrl')?.touched,
+                            'is-valid': !usuarioForm.get('profilePicUrl')?.errors && usuarioForm.get('profilePicUrl')?.touched
+                    }">
+                <span class="text-danger"
+                    *ngIf="usuarioForm.get('profilePicUrl')?.hasError('required') && usuarioForm.get('profilePicUrl')?.touched"
+                >Url imagen de perfil es requerido</span>
+        </div>
+
+        
+
+        <div class="row mb-2">
+            <div class="col">
+                    <label for="localidad">Localidad</label>
+                        <input formControlName="localidad"
+                            placeholder="Ingrese nueva localidad"
+                            type="text"
+                            class="form-control"
+                            name="localidad"
+                            [ngClass]="{
+                                    'is-invalid': usuarioForm.get('localidad')?.errors && usuarioForm.get('localidad')?.touched,
+                                    'is-valid': !usuarioForm.get('localidad')?.errors && usuarioForm.get('localidad')?.touched
+                            }">
+                        <span class="text-danger"
+                            *ngIf="usuarioForm.get('localidad')?.hasError('required') && usuarioForm.get('localidad')?.touched"
+                        >Localidad es requerido</span>
+            </div>
+            <div class="col">
+                    <label for="provincia">Provincia</label>
+                    <select class="form-select"
+                        name="provincia"
+                        formControlName="provincia"
+                        [ngClass]="{
+                            'is-invalid': usuarioForm.get('provincia')?.errors && usuarioForm.get('provincia')?.touched,
+                            'is-valid': !usuarioForm.get('provincia')?.errors && usuarioForm.get('provincia')?.touched
+                    }">
+                        <option *ngFor="let provincia of provincias" [value]="provincia.nombre">{{provincia.nombre}}</option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="usuarioForm.get('provincia')?.hasError('required') && usuarioForm.get('provincia')?.touched"
+                    >Provincia es requerido</span>
+            </div>
+        </div>
+
+        <h6 class="mt-3 mb-1 border-bottom border-info">Redes Sociales</h6>
+        <div class="row mb-2">
+            <div class="col">
+                <label for="telefono">Telefono</label>
+                <input formControlName="telefono"
+                    placeholder="Ingrese nuevo telefono"
+                    type="text"
+                    class="form-control"
+                    name="telefono"
+                    value="+549"
+                    [ngClass]="{
+                        'is-invalid': usuarioForm.get('telefono')?.errors && usuarioForm.get('telefono')?.touched,
+                        'is-valid': !usuarioForm.get('telefono')?.errors && usuarioForm.get('telefono')?.touched
+                    }">
+                <span class="text-danger"
+                    *ngIf="usuarioForm.get('telefono')?.hasError('required') && usuarioForm.get('telefono')?.touched"
+                >Telefono es requerido</span>
+            </div>
+
+            <div class="col">
+                <label for="email">Email</label>
+                <input formControlName="email"
+                    placeholder="Ingrese nuevo email"
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    [ngClass]="{
+                        'is-invalid': usuarioForm.get('email')?.errors && usuarioForm.get('email')?.touched,
+                        'is-valid': !usuarioForm.get('email')?.errors && usuarioForm.get('email')?.touched
+                }">
+                <span class="text-danger"
+                    *ngIf="usuarioForm.get('email')?.hasError('required') && usuarioForm.get('email')?.touched"
+                >Email es requerido</span>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label for="facebook">Facebook</label>
+                <input formControlName="facebook"
+                    placeholder="Ingrese link a perfil de Facebook"
+                    type="text"
+                    class="form-control"
+                    name="facebook">
+        </div>
+
+        <div class="mb-2">
+            <label for="github">GitHub</label>
+                <input formControlName="github"
+                    placeholder="Ingrese link a perfil de GitHub"
+                    type="text"
+                    class="form-control"
+                    name="github"
+                    [ngClass]="{
+                            'is-invalid': usuarioForm.get('github')?.errors && usuarioForm.get('github')?.touched,
+                            'is-valid': !usuarioForm.get('github')?.errors && usuarioForm.get('github')?.touched
+                    }">
+                <span class="text-danger"
+                    *ngIf="usuarioForm.get('github')?.hasError('required') && usuarioForm.get('github')?.touched"
+                >GitHub es requerido</span>
+        </div> 
+
+        <div class="mb-2">
+            <label for="instagram">Instagram</label>
+                <input formControlName="instagram"
+                    placeholder="Ingrese link a perfil de Instagram"
+                    type="text"
+                    class="form-control"
+                    name="instagram">
+        </div> 
+
+        <div class="mb-2">
+            <label for="linkedin">LinkedIn</label>
+                <input formControlName="linkedin"
+                    placeholder="Ingrese link a perfil de LinkedIn"
+                    type="text"
+                    class="form-control"
+                    name="linkedin"
+                    [ngClass]="{
+                            'is-invalid': usuarioForm.get('linkedin')?.errors && usuarioForm.get('linkedin')?.touched,
+                            'is-valid': !usuarioForm.get('linkedin')?.errors && usuarioForm.get('linkedin')?.touched
+                    }">
+                <span class="text-danger"
+                    *ngIf="usuarioForm.get('linkedin')?.hasError('required') && usuarioForm.get('linkedin')?.touched"
+                >LinkedIn es requerido</span>
+        </div>
+
+        <div class="mb-2">
+            <label for="twitter">Twitter</label>
+                <input formControlName="twitter"
+                    placeholder="Ingrese link a perfil de Twitter"
+                    type="text"
+                    class="form-control"
+                    name="twitter">
+        </div> 
+                
+        <span *ngIf="!usuarioForm.valid" class="text-warning">Complete correctamente para enviar</span>
+        <button class="btn btn-outline-success d-flex ms-auto me-auto bi bi-plus-square"
+            type="submit"
+            [disabled]="!usuarioForm.valid"
+        >Añadir</button>
+    </form>
+</div>

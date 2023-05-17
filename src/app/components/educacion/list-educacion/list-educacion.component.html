@@ -1,0 +1,42 @@
+<div class="container mb-6">
+    <div class="title">
+        <h2 class="border-bottom border-primary">EDUCACIÓN</h2>
+        <button
+            class="btn btn-outline-success bi bi-plus-square"
+            (click)="open()"
+            *ngIf="loginService.logged === true"
+        >Añadir</button>
+    </div>
+
+    <div class="row">
+        <div class="card text-white my-3 p-0 mx-3" *ngFor="let educacion of educaciones">
+            <div class="card__inner">
+                <div class="card__body card__body--front">
+                    <h2 class="card__title">{{educacion.carrera}}</h2>
+                </div>
+                <div class="card__body card__body--back">
+                    <h2 class="card__title">{{educacion.carrera}}</h2>
+                    <ul>
+                        <li>Hice la carrera de {{educacion.carrera}}</li>
+                        <li>Me recibí de {{educacion.titulo}}</li>
+                        <li>Estudié en {{educacion.establecimiento}}</li>
+                        <li>Cursé durante el siguiente periodo {{educacion.periodo}}</li>
+                    </ul>
+                    <div class="btn-group">
+                        <button
+                            class="btn btn-outline-warning bi bi-pencil-square"
+                            (click)="open(educacion.id)"
+                            *ngIf="loginService.logged === true"
+                        >Editar</button>
+                        <button
+                            class="btn btn-outline-danger bi bi-trash"
+                            (click)="delete(educacion.id!)"
+                            *ngIf="loginService.logged === true"
+                        >Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h5 *ngIf="educaciones.length == 0">No hay registros para mostrar</h5>
+</div>

@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Eliminar item</h4>
+    <button
+        type="button"
+        class="btn-close"
+        aria-label="Close button"
+        aria-describedby="modal-title"
+        (click)="activeModal.dismiss('Cross click')"
+    ></button>
+</div>
+<div class="modal-body">
+    <p>
+        <strong>¿Estás seguro de eliminar este item?</strong>
+    </p>
+    <p>
+        La información será eliminada de manera permanente.
+        <span class="text-danger">Esta acción no se puede deshacer.</span>
+    </p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel click')">Cancelar</button>
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="activeModal.close('Ok click')">Eliminar</button>
+</div>

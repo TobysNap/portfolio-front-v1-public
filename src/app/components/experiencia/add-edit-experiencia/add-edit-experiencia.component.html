@@ -1,0 +1,95 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ accion }} datos</h4>
+    <button type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="activeModal.dismiss()"
+    ></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="experienciaForm" (ngSubmit)="saveExperiencia()"> 
+        <div class="mb-2">
+            <label for="establecimiento">Lugar de trabajo</label>
+                <input formControlName="establecimiento"
+                    placeholder="Ingrese lugar de trabajo"
+                    type="text"
+                    class="form-control"
+                    name="establecimiento"
+                    [ngClass]="{
+                            'is-invalid': experienciaForm.get('establecimiento')?.errors && experienciaForm.get('establecimiento')?.touched,
+                            'is-valid': !experienciaForm.get('establecimiento')?.errors && experienciaForm.get('establecimiento')?.touched
+                    }">
+                <span class="text-danger"
+                    *ngIf="experienciaForm.get('establecimiento')?.hasError('required') && experienciaForm.get('establecimiento')?.touched"
+                >Lugar de trabajo es requerido</span>
+        </div>
+        
+        <div class="mb-2">
+            <label for="puesto">Puesto</label>
+            <input type="text"
+                   placeholder="Ingrese puesto de trabajo. Ej: Atención al público/limpieza."
+                   class="form-control"
+                   name="puesto"
+                   formControlName="puesto"
+                   [ngClass]="{ 
+                        'is-invalid' : experienciaForm.get('puesto')?.errors && experienciaForm.get('puesto')?.touched,
+                        'is-valid': !experienciaForm.get('puesto')?.errors && experienciaForm.get('puesto')?.touched
+                    }">  
+            <span class="text-danger"
+                *ngIf="experienciaForm.get('puesto')?.hasError('required') && experienciaForm.get('puesto')?.touched"
+            >Puesto es requerido</span>
+        </div>
+
+        <div class="mb-2">
+            <label for="tipoEmpleo">Tipo de Empleo</label>
+            <input formControlName="tipoEmpleo"
+                   placeholder="Ingrese tipo de empleo. Ej: Media jornada/jornada completa."
+                   type="text" class="form-control" name="tipoEmpleo"
+                   [ngClass]="{
+                        'is-invalid': experienciaForm.get('tipoEmpleo')?.errors && experienciaForm.get('tipoEmpleo')?.touched,
+                        'is-valid': !experienciaForm.get('tipoEmpleo')?.errors && experienciaForm.get('tipoEmpleo')?.touched
+                    }">
+            <span class="text-danger"
+                *ngIf="experienciaForm.get('tipoEmpleo')?.hasError('required') && experienciaForm.get('tipoEmpleo')?.touched"
+            >Tipo de empleo es requerido</span>
+        </div>   
+
+        <div class="mb-2">
+            <label for="periodo">Periodo</label>
+            <input type="text"
+                   placeholder="Ingrese periodo trabajado del siguiente modo: 2010-2012 o 2012 o 2010-actualidad"
+                   class="form-control"
+                   name="periodo"
+                   formControlName="periodo"
+                   [ngClass]="{ 
+                        'is-invalid' : experienciaForm.get('periodo')?.errors && experienciaForm.get('periodo')?.touched,
+                        'is-valid': !experienciaForm.get('periodo')?.errors && experienciaForm.get('periodo')?.touched
+                    }">  
+            <span class="text-danger"
+                *ngIf="experienciaForm.get('periodo')?.hasError('required') && experienciaForm.get('periodo')?.touched"
+            >Periodo es requerido</span>
+        </div>
+
+        <div class="mb-2">
+            <label for="contactoExperiencia">Contacto</label>
+            <input type="text"
+                   placeholder="Ingrese algún dato de contacto de su lugar de trabajo"
+                   class="form-control"
+                   name="contactoExperiencia"
+                   formControlName="contactoExperiencia"
+                   [ngClass]="{ 
+                        'is-invalid' : experienciaForm.get('contactoExperiencia')?.errors && experienciaForm.get('contactoExperiencia')?.touched,
+                        'is-valid': !experienciaForm.get('contactoExperiencia')?.errors && experienciaForm.get('contactoExperiencia')?.touched
+                    }">  
+            <span class="text-danger"
+                *ngIf="experienciaForm.get('contactoExperiencia')?.hasError('required') && experienciaForm.get('contactoExperiencia')?.touched"
+            >Contacto es requerido</span>
+        </div>
+
+        <span *ngIf="!experienciaForm.valid" class="text-warning">Complete correctamente para enviar</span>
+        <button class="btn btn-outline-success d-flex ms-auto me-auto bi bi-plus-square"
+            type="submit"
+            [disabled]="!experienciaForm.valid"
+        >Añadir</button>
+    </form>
+</div>
